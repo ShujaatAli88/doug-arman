@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Menu, X, ChevronDown } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { useScrolled } from '../hooks/useScrolled'
 import MegaMenu from './MegaMenu'
 
@@ -19,7 +18,6 @@ const navLinks = [
 export default function Navbar() {
   const scrolled = useScrolled(60)
   const location = useLocation()
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
 
   return (
@@ -94,56 +92,9 @@ export default function Navbar() {
                 </span>
               </button>
 
-              {/* Mobile hamburger */}
-              <button
-                className="lg:hidden w-10 h-10 rounded-lg border border-white/10 hover:border-brand-blue/50 bg-white/[0.04] flex items-center justify-center text-white/65 hover:text-white transition-all"
-                onClick={() => setMobileOpen((v) => !v)}
-                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              >
-                {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-              </button>
             </div>
           </div>
 
-          {/* Mobile dropdown */}
-          <AnimatePresence>
-            {mobileOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.18 }}
-                className="lg:hidden bg-dark-800/98 backdrop-blur-xl border-t border-dark-700 pb-4 rounded-b-xl"
-              >
-                {navLinks.map((link) => {
-                  const isActive = location.pathname === link.href
-                  return (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`flex items-center px-4 py-3 text-sm font-medium border-l-2 transition-all ${
-                        isActive
-                          ? 'text-brand-blue border-brand-blue bg-brand-blue/5'
-                          : 'text-white/60 border-transparent hover:text-white hover:border-dark-400 hover:bg-white/[0.03]'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                })}
-                <div className="px-4 pt-3">
-                  <a
-                    href="tel:6608511818"
-                    className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-dark text-white text-sm font-semibold px-4 py-3 rounded-lg w-full transition-colors"
-                  >
-                    <Phone size={14} />
-                    (660) 851-1818
-                  </a>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </nav>
       </header>
 
