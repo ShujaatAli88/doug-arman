@@ -51,7 +51,7 @@ export default function MegaMenu({ open, onClose }) {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 z-[90] flex flex-col"
+          className="fixed inset-0 z-[90] flex flex-col overflow-hidden"
           style={{ background: 'linear-gradient(135deg, #09111E 0%, #0E1D38 100%)' }}
         >
           {/* subtle dot grid */}
@@ -84,8 +84,7 @@ export default function MegaMenu({ open, onClose }) {
               variants={listV}
               initial="hidden"
               animate="visible"
-              className="lg:hidden flex-1 flex flex-col overflow-y-auto px-4 sm:px-8 py-2"
-              style={{ scrollbarWidth: 'none' }}
+              className="lg:hidden flex-1 flex flex-col justify-between px-4 sm:px-6 py-3"
             >
               {navItems.map((item) => {
                 const isActive = pathname === item.href
@@ -94,14 +93,14 @@ export default function MegaMenu({ open, onClose }) {
                     <Link
                       to={item.href}
                       onClick={onClose}
-                      className={`flex items-center gap-3.5 px-3 py-3.5 rounded-xl mb-1 transition-all duration-200 group ${
+                      className={`flex items-center gap-3.5 px-3 py-2.5 rounded-xl transition-all duration-200 group ${
                         isActive
                           ? 'bg-brand-blue/15 border border-brand-blue/30'
                           : 'hover:bg-white/[0.05] border border-transparent'
                       }`}
                     >
                       {/* icon badge */}
-                      <span className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+                      <span className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
                         isActive
                           ? 'bg-brand-blue text-white'
                           : 'bg-white/[0.06] text-white/40 group-hover:bg-brand-blue/20 group-hover:text-brand-blue'
