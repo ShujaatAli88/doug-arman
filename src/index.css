@@ -1,0 +1,72 @@
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand-blue: #1B4FD8;
+  --color-brand-glow: rgba(27, 79, 216, 0.3);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0A0B0F;
+  color: #F0F2F8;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(27, 79, 216, 0.45);
+  color: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0A0B0F; }
+::-webkit-scrollbar-thumb { background: #1B4FD8; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #4B73E8; }
+
+@layer utilities {
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900;
+  }
+
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-brand-blue to-brand-blue-light bg-clip-text text-transparent;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 40px var(--color-brand-glow), 0 0 80px rgba(27,79,216,0.1);
+  }
+
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+
+  /* glass card */
+  .glass {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+}
+
+/* Page transition */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Smooth image load */
+img { transition: opacity 0.3s ease; }
