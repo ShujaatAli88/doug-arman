@@ -69,7 +69,7 @@ export default function AboutPage() {
                   />
                   {/* bottom-only gradient so face is never dimmed */}
                   <div className="absolute inset-x-0 bottom-0 h-[38%]"
-                    style={{ background: 'linear-gradient(to top, rgba(6,12,28,0.97) 0%, rgba(6,12,28,0.6) 55%, transparent 100%)' }} />
+                    style={{ background: 'linear-gradient(to top, rgba(8,15,32,0.96) 0%, rgba(8,15,32,0.55) 55%, transparent 100%)' }} />
 
                   {/* Meet card — anchored to the very bottom of the photo */}
                   <div className="absolute inset-x-0 bottom-0 px-6 pb-5 pt-3">
@@ -91,7 +91,7 @@ export default function AboutPage() {
 
                 {/* Contact panel — separate card below the photo */}
                 <div className="rounded-xl border border-white/[0.08] overflow-hidden"
-                  style={{ background: 'rgba(10,14,26,0.95)' }}>
+                  style={{ background: 'rgba(11,18,38,0.95)' }}>
                   {/* gold accent strip at top */}
                   <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold/30 to-transparent" />
                   <div className="px-5 py-4">

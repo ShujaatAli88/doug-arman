@@ -33,16 +33,16 @@ export default function HeroSection({
           />
           {/* cinematic left-heavy overlay */}
           <div className="absolute inset-0" style={{
-            background: 'linear-gradient(105deg, rgba(6,8,15,0.92) 0%, rgba(6,8,15,0.7) 40%, rgba(6,8,15,0.3) 75%, rgba(6,8,15,0.15) 100%)'
+            background: 'linear-gradient(105deg, rgba(8,14,30,0.90) 0%, rgba(8,14,30,0.65) 40%, rgba(8,14,30,0.25) 75%, rgba(8,14,30,0.10) 100%)'
           }} />
           {/* bottom fade to page bg */}
           <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
-            style={{ background: 'linear-gradient(to top, #0A0B0F 0%, transparent 100%)' }} />
+            style={{ background: 'linear-gradient(to top, #09111E 0%, transparent 100%)' }} />
         </>
       ) : (
         <>
           <div className="absolute inset-0" style={{
-            background: 'linear-gradient(135deg, #07090E 0%, #0D1B3E 55%, #07090E 100%)'
+            background: 'linear-gradient(135deg, #09111E 0%, #0F2040 55%, #09111E 100%)'
           }} />
           <div className="absolute inset-0 opacity-[0.07]" style={{
             backgroundImage: `linear-gradient(rgba(27,79,216,1) 1px, transparent 1px), linear-gradient(90deg, rgba(27,79,216,1) 1px, transparent 1px)`,
@@ -52,7 +52,7 @@ export default function HeroSection({
             background: 'radial-gradient(ellipse 65% 55% at 40% 50%, rgba(27,79,216,0.15) 0%, transparent 70%)'
           }} />
           <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
-            style={{ background: 'linear-gradient(to top, #0A0B0F 0%, transparent 100%)' }} />
+            style={{ background: 'linear-gradient(to top, #09111E 0%, transparent 100%)' }} />
         </>
       )}
 

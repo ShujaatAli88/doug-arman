@@ -19,8 +19,8 @@ html {
 }
 
 body {
-  background-color: #0A0B0F;
-  color: #F0F2F8;
+  background-color: #09111E;
+  color: #EFF3FF;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,7 +33,7 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0A0B0F; }
+::-webkit-scrollbar-track { background: #09111E; }
 ::-webkit-scrollbar-thumb { background: #1B4FD8; border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: #4B73E8; }
 

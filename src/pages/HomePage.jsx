@@ -242,10 +242,10 @@ export default function HomePage() {
 
                 {/* left-only gradient — right side of photo stays clean */}
                 <div className="absolute inset-0 pointer-events-none"
-                  style={{ background: 'linear-gradient(to right, rgba(6,12,28,0.95) 0%, rgba(6,12,28,0.7) 45%, transparent 72%)' }} />
+                  style={{ background: 'linear-gradient(to right, rgba(8,15,32,0.92) 0%, rgba(8,15,32,0.65) 45%, transparent 72%)' }} />
                 {/* bottom edge fade */}
                 <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
-                  style={{ background: 'linear-gradient(to top, rgba(6,12,28,0.85) 0%, transparent 100%)' }} />
+                  style={{ background: 'linear-gradient(to top, rgba(8,15,32,0.80) 0%, transparent 100%)' }} />
 
                 {/* Meet card — left-aligned, ~70% wide, photo shows on right */}
                 <div className="absolute bottom-0 left-0 w-[72%] px-7 pb-6 pt-4">

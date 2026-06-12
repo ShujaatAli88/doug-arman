@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { CheckCircle, Loader, Phone, Mail, BarChart2, FileSearch, MessageCircle } from 'lucide-react'
 import HeroSection from '../components/HeroSection'
-import AgentPhoto from '../components/AgentPhoto'
 import CTABanner from '../components/CTABanner'
 import AnimatedSection from '../components/AnimatedSection'
 import SectionLabel from '../components/SectionLabel'
@@ -194,42 +193,69 @@ export default function ValuationPage() {
               </AnimatedSection>
             </div>
 
-            {/* Sidebar */}
-            <div className="space-y-6">
-              <AnimatedSection delay={0.1}>
-                <div className="bg-dark-700 rounded-xl p-6 border border-dark-600">
-                  <h3 className="font-serif font-bold text-text-primary mb-4">What You'll Receive</h3>
-                  <ul className="space-y-3">
+            {/* Sidebar — flex column, stretches to match form height */}
+            <div className="flex flex-col gap-6 h-full">
+
+              {/* What You'll Receive — grows to fill remaining space */}
+              <AnimatedSection delay={0.1} className="flex-1 flex flex-col">
+                <div className="bg-dark-700 rounded-xl p-6 border border-dark-600 flex-1 flex flex-col">
+                  <h3 className="font-serif font-bold text-text-primary mb-1">What You'll Receive</h3>
+                  <p className="text-text-muted text-xs mb-5">Your free valuation includes:</p>
+                  <ul className="space-y-4 flex-1">
                     {[
-                      'Precise market value based on recent MLS data',
-                      'Comparable sales analysis for your neighborhood',
-                      'Current market conditions affecting your price',
-                      'Recommended list price range for fast sale',
-                      'Personal call from Doug to walk through the numbers',
+                      { title: 'Precise Market Value',    desc: 'Based on recent MLS sales data in your area' },
+                      { title: 'Comparable Sales',        desc: 'Side-by-side analysis of nearby sold homes' },
+                      { title: 'Market Conditions',       desc: 'Current trends affecting your listing price' },
+                      { title: 'Recommended Price Range', desc: 'Priced to sell fast without leaving money behind' },
+                      { title: 'Personal Call From Doug', desc: 'Walk through the numbers with an expert — no pressure' },
                     ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-text-secondary text-sm">
-                        <CheckCircle size={14} className="text-brand-blue flex-shrink-0 mt-0.5" />
-                        {item}
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="w-5 h-5 rounded-full bg-brand-blue/15 border border-brand-blue/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckCircle size={11} className="text-brand-blue" />
+                        </span>
+                        <div>
+                          <p className="text-text-primary text-sm font-medium leading-snug">{item.title}</p>
+                          <p className="text-text-muted text-xs leading-relaxed mt-0.5">{item.desc}</p>
+                        </div>
                       </li>
                     ))}
                   </ul>
+                  {/* bottom accent */}
+                  <div className="mt-6 pt-5 border-t border-dark-600 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-xs text-text-muted">Response within <strong className="text-text-secondary">24 hours</strong> · No obligation</span>
+                  </div>
                 </div>
               </AnimatedSection>
 
+              {/* Agent card — natural height, pinned at bottom */}
               <AnimatedSection delay={0.2}>
-                <div className="bg-dark-700 rounded-xl p-6 border border-brand-blue/30 text-center">
-                  <AgentPhoto size="md" className="mx-auto mb-3" />
-                  <h3 className="font-serif font-bold text-text-primary mb-1">Doug Armantrout</h3>
-                  <p className="text-brand-blue text-xs mb-4">REALTOR® | Cole Camp, MO</p>
-                  <a href="tel:6608511818" className="flex items-center justify-center gap-2 text-text-secondary hover:text-brand-blue text-sm transition-colors mb-2">
-                    <Phone size={14} className="text-brand-blue" /> (660) 851-1818
-                  </a>
-                  <a href="mailto:douga.homes@gmail.com" className="flex items-center justify-center gap-2 text-text-secondary hover:text-brand-blue text-sm transition-colors">
-                    <Mail size={14} className="text-brand-blue" /> douga.homes@gmail.com
-                  </a>
-                  <p className="text-text-muted text-xs mt-4 italic">Or call directly: (660) 851-1818</p>
+                <div className="rounded-xl border border-white/[0.08] overflow-hidden"
+                  style={{ background: 'rgba(11,18,38,0.95)' }}>
+                  <div className="h-[2px] bg-gradient-to-r from-brand-blue/70 via-brand-blue/30 to-transparent" />
+                  <div className="flex items-center gap-4 p-5">
+                    <img
+                      src="/bio_pic.png"
+                      alt="Doug Armantrout"
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
+                      className="w-16 h-16 rounded-xl object-cover object-top flex-shrink-0 border border-brand-blue/20"
+                    />
+                    <div className="min-w-0">
+                      <h3 className="font-serif font-bold text-text-primary text-base leading-tight">Doug Armantrout</h3>
+                      <p className="text-brand-blue text-xs font-semibold uppercase tracking-wide mt-0.5 mb-3">REALTOR® · Cole Camp, MO</p>
+                      <a href="tel:6608511818"
+                        className="flex items-center gap-1.5 text-text-secondary hover:text-white text-xs transition-colors mb-1.5">
+                        <Phone size={11} className="text-brand-blue flex-shrink-0" /> (660) 851-1818
+                      </a>
+                      <a href="mailto:douga.homes@gmail.com"
+                        className="flex items-center gap-1.5 text-text-secondary hover:text-white text-xs transition-colors truncate">
+                        <Mail size={11} className="text-brand-blue flex-shrink-0" /> douga.homes@gmail.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </AnimatedSection>
+
             </div>
           </div>
         </div>
