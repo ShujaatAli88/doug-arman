@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MobileBottomBar from './components/MobileBottomBar'
-import ExitIntentPopup from './components/ExitIntentPopup'
 import ScrollToTop from './components/ScrollToTop'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -58,7 +57,6 @@ export default function App() {
       </AnimatePresence>
       <Footer />
       <MobileBottomBar />
-      <ExitIntentPopup />
     </div>
   )
 }
