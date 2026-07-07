@@ -226,10 +226,6 @@ export default function ContactPage() {
                       <span className="text-text-primary">8:00 AM – 6:00 PM</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-text-secondary">Saturday</span>
-                      <span className="text-text-primary">9:00 AM – 4:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
                       <span className="text-text-secondary">Sunday</span>
                       <span className="text-text-primary">By Appointment</span>
                     </div>

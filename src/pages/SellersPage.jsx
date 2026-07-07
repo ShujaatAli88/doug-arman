@@ -83,7 +83,7 @@ export default function SellersPage() {
       <HeroSection
         height="half"
         badge="Seller Resources"
-        title={`<span class="text-white">Sell for </span><span class="text-[#1B4FD8]">Maximum Value</span>`}
+        title={`<span class="text-white">Sell for </span><span class="text-[#19469D]">Maximum Value</span>`}
         description="A proven strategy that gets your home sold fast and for the best possible price in West Central Missouri."
         primaryCTA={{ label: 'Get Free Home Valuation', href: '/home-valuation' }}
         secondaryCTA={{ label: 'Talk to Doug', href: '/contact' }}

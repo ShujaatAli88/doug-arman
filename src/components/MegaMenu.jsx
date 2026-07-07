@@ -272,7 +272,7 @@ export default function MegaMenu({ open, onClose }) {
                 </a>
                 <Link to="/contact" onClick={onClose}
                   className="flex items-center justify-center gap-1.5 text-white text-xs font-bold py-3 rounded-xl shadow-lg shadow-brand-blue/20 transition-all hover:shadow-brand-blue/40"
-                  style={{ background: 'linear-gradient(135deg, #1B4FD8 0%, #4B73E8 100%)' }}>
+                  style={{ background: 'linear-gradient(135deg, #19469D 0%, #4B73E8 100%)' }}>
                   Free Consult <ArrowUpRight size={12} />
                 </Link>
               </div>

@@ -81,7 +81,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-white/45 text-sm leading-relaxed mb-6 max-w-sm">
-              {agent.tagline} — West Central Missouri's trusted real estate expert serving buyers and sellers for over 12 years.
+              {agent.tagline} — West Central Missouri's trusted real estate expert serving buyers and sellers for over 10 years.
             </p>
             <div className="flex items-center gap-2">
               {socials.map(({ Icon, href, label }) => (

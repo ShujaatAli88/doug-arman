@@ -26,8 +26,8 @@ export default function HeroSection({
     >
       {badge && (
         <motion.div variants={fadeUp} transition={defaultTransition}>
-          <span className={`inline-flex items-center gap-2 border border-white/20 bg-white/[0.08] backdrop-blur-sm text-white/80 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-[0.15em] ${compact ? 'mb-3' : 'mb-6'}`}>
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse flex-shrink-0" />
+          <span className={`inline-flex items-center gap-2.5 border border-brand-blue/30 bg-brand-blue/[0.1] backdrop-blur-sm text-white/75 text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-[0.18em] ${compact ? 'mb-3' : 'mb-7'}`}>
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue-light flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(75,115,232,0.9)' }} />
             {badge}
           </span>
         </motion.div>
@@ -69,13 +69,16 @@ export default function HeroSection({
           className="flex flex-col sm:flex-row gap-2.5">
           {primaryCTA && (
             <Link to={primaryCTA.href}
-              className={`inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-2xl hover:shadow-brand-blue/40 ${compact ? 'px-6 py-3 text-sm' : 'px-7 py-3.5 text-sm lg:text-base'}`}>
-              {primaryCTA.label} <ArrowRight size={15} />
+              className={`group relative inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-brand-blue/40 overflow-hidden ${compact ? 'px-6 py-3 text-sm' : 'px-8 py-4 text-sm lg:text-base'}`}>
+              {/* shimmer */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+              <span className="relative">{primaryCTA.label}</span>
+              <ArrowRight size={15} className="relative group-hover:translate-x-0.5 transition-transform duration-200" />
             </Link>
           )}
           {secondaryCTA && (
             <Link to={secondaryCTA.href}
-              className={`inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white/70 text-white font-semibold rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm ${compact ? 'px-6 py-3 text-sm' : 'px-7 py-3.5 text-sm lg:text-base'}`}>
+              className={`inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white/60 text-white/85 hover:text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/[0.07] backdrop-blur-sm ${compact ? 'px-6 py-3 text-sm' : 'px-8 py-4 text-sm lg:text-base'}`}>
               {secondaryCTA.label}
             </Link>
           )}
@@ -170,16 +173,51 @@ export default function HeroSection({
     <section className={`relative flex items-center overflow-hidden ${
       isFullHeight ? 'min-h-screen' : 'min-h-[55vh] lg:min-h-[65vh]'
     }`}>
+      {/* Base gradient */}
       <div className="absolute inset-0" style={{
-        background: 'linear-gradient(135deg, #09111E 0%, #0F2040 55%, #09111E 100%)'
+        background: 'linear-gradient(135deg, #07101D 0%, #0E1F3D 55%, #07101D 100%)'
       }} />
-      <div className="absolute inset-0 opacity-[0.07]" style={{
+
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-[0.06]" style={{
         backgroundImage: `linear-gradient(rgba(27,79,216,1) 1px, transparent 1px), linear-gradient(90deg, rgba(27,79,216,1) 1px, transparent 1px)`,
         backgroundSize: '60px 60px',
       }} />
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 65% 55% at 40% 50%, rgba(27,79,216,0.15) 0%, transparent 70%)'
-      }} />
+
+      {/* Ambient orbs */}
+      <div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: '480px', height: '480px',
+          left: '30%', top: '10%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          animation: 'orb-drift 16s ease-in-out infinite',
+        }}
+      />
+      <div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: '280px', height: '280px',
+          left: '5%', bottom: '20%',
+          background: 'radial-gradient(circle, rgba(75,115,232,0.12) 0%, transparent 70%)',
+          filter: 'blur(50px)',
+          animation: 'orb-drift 20s ease-in-out infinite reverse',
+        }}
+      />
+      <div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: '200px', height: '200px',
+          right: '8%', top: '30%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.1) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+          animation: 'orb-drift 12s ease-in-out infinite',
+          animationDelay: '-6s',
+        }}
+      />
+
+      {/* Bottom fade */}
       <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
         style={{ background: 'linear-gradient(to top, #09111E 0%, transparent 100%)' }} />
 

@@ -20,9 +20,9 @@ const PropertyCard = memo(function PropertyCard({ listing }) {
 
   return (
     <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
-      className="group bg-dark-800 rounded-2xl overflow-hidden border border-dark-600 hover:border-brand-blue/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-blue/10 flex flex-col"
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      className="group bg-dark-800 rounded-2xl overflow-hidden border border-dark-600 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-blue/15 flex flex-col"
     >
       {/* ── Image area ── */}
       <div className="relative aspect-[16/10] overflow-hidden">

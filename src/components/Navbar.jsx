@@ -56,13 +56,16 @@ export default function Navbar() {
                     to={link.href}
                     className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 group ${
                       isActive
-                        ? 'text-brand-blue bg-brand-blue/8'
-                        : 'text-white/65 hover:text-white hover:bg-white/[0.06]'
+                        ? 'text-brand-blue-light bg-brand-blue/10'
+                        : 'text-white/60 hover:text-white hover:bg-white/[0.05]'
                     }`}
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue" />
+                      <span
+                        className="absolute bottom-0.5 left-3 right-3 h-px rounded-full"
+                        style={{ background: 'linear-gradient(to right, transparent, #4B73E8, transparent)' }}
+                      />
                     )}
                   </Link>
                 )

@@ -32,7 +32,7 @@ export default function ValuationPage() {
       <HeroSection
         height="half"
         badge="No Obligation • 100% Free • West Central MO Specialists"
-        title={`<span class="text-white">Get Your Free </span><span class="text-[#1B4FD8]">Home Valuation</span>`}
+        title={`<span class="text-white">Get Your Free </span><span class="text-[#19469D]">Home Valuation</span>`}
         description="Find out what your home is worth in today's West Central Missouri market. No strings attached."
       />
 
@@ -78,7 +78,7 @@ export default function ValuationPage() {
                             City <span className="text-brand-blue">*</span>
                           </label>
                           <input id="v-city" {...register('city', { required: 'City is required' })}
-                            placeholder="Cole Camp"
+                            placeholder="City"
                             className="w-full bg-dark-800 border border-dark-500 focus:border-brand-blue text-text-primary placeholder-text-muted text-sm rounded-lg px-4 py-2.5 outline-none transition-colors focus-ring" />
                           {errors.city && <p className="text-red-400 text-xs mt-1">{errors.city.message}</p>}
                         </div>
@@ -93,7 +93,7 @@ export default function ValuationPage() {
                               ZIP <span className="text-brand-blue">*</span>
                             </label>
                             <input id="v-zip" {...register('zip', { required: 'ZIP required' })}
-                              placeholder="65325"
+                              placeholder="ZIP Code"
                               className="w-full bg-dark-800 border border-dark-500 focus:border-brand-blue text-text-primary placeholder-text-muted text-sm rounded-lg px-4 py-2.5 outline-none transition-colors focus-ring" />
                             {errors.zip && <p className="text-red-400 text-xs mt-1">{errors.zip.message}</p>}
                           </div>

@@ -131,7 +131,7 @@ export default function AboutPage() {
                 Doug Armantrout is a licensed REALTOR® based in Cole Camp, MO, serving buyers and sellers throughout West Central Missouri. His service area spans Cole Camp, Warsaw, Sedalia, Lincoln, Knob Noster, Leeton, Stover, Otterville, and surrounding communities — giving clients access to one of the region's most knowledgeable local real estate professionals.
               </p>
               <p className="text-text-secondary leading-relaxed">
-                With over 12 years of experience and full access to the West Central Association of Realtors MLS, Doug brings a strategic, data-driven approach to every transaction. Whether you're a first-time buyer navigating the process for the first time or a seasoned homeowner looking to maximize your sale, Doug tailors his expertise to your specific situation — not a one-size-fits-all script.
+                With over 10 years of experience and full access to the West Central Association of Realtors MLS, Doug brings a strategic, data-driven approach to every transaction. Whether you're a first-time buyer navigating the process for the first time or a seasoned homeowner looking to maximize your sale, Doug tailors his expertise to your specific situation — not a one-size-fits-all script.
               </p>
               <p className="text-text-secondary leading-relaxed">
                 Born and raised in West Central Missouri, Doug is deeply committed to the communities he serves. He understands the unique character of Cole Camp, the lakeside appeal of Warsaw, and the economic vitality of Sedalia. That local knowledge translates directly into better outcomes for his clients — smarter pricing, sharper negotiations, and deals that actually close.

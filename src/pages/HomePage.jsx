@@ -17,7 +17,7 @@ import { staggerContainer, fadeUp, defaultTransition } from '../utils/animations
 const stats = [
   { value: 150, suffix: '+', label: 'Homes Sold' },
   { value: 98, suffix: '%', label: 'Client Satisfaction' },
-  { value: 12, suffix: '+', label: 'Years Experience' },
+  { value: 10, suffix: '+', label: 'Years Experience' },
   { value: 5, suffix: '★', label: 'Avg Rating' },
 ]
 
@@ -103,28 +103,46 @@ function TestimonialsCarousel() {
   )
 }
 
-function BlogCard({ post }) {
-  const categoryColors = {
-    'Market Update': 'bg-brand-blue/20 text-brand-blue-light',
-    'Buyer Tips': 'bg-green-500/20 text-green-400',
-    'Seller Tips': 'bg-amber-500/20 text-amber-400',
-    'Local News': 'bg-purple-500/20 text-purple-400',
-  }
+const categoryColors = {
+  'Market Update': 'bg-brand-blue/25 text-brand-blue-light',
+  'Buyer Tips':    'bg-green-500/25 text-green-400',
+  'Seller Tips':   'bg-amber-500/25 text-amber-400',
+  'Local News':    'bg-purple-500/25 text-purple-400',
+}
 
+function BlogCard({ post }) {
   return (
-    <Link to={`/blog/${post.slug}`} className="group block bg-dark-700 rounded-xl overflow-hidden border border-dark-600 hover:border-brand-blue/50 transition-colors">
-      <div className="aspect-video bg-gradient-to-br from-dark-600 to-dark-500 relative">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-4xl opacity-20">📰</span>
-        </div>
-      </div>
-      <div className="p-5">
-        <span className={`text-xs font-semibold px-2.5 py-1 rounded-md ${categoryColors[post.category] || 'bg-dark-500 text-text-secondary'}`}>
+    <Link to={`/blog/${post.slug}`} className="group block bg-dark-700 rounded-xl overflow-hidden border border-dark-600 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-xl hover:shadow-brand-blue/10 shimmer-card h-full flex flex-col">
+      {/* Image */}
+      <div className="aspect-video bg-gradient-to-br from-dark-600 to-dark-500 relative overflow-hidden flex-shrink-0">
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => { e.currentTarget.style.display = 'none' }}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-4xl opacity-20">📰</span>
+          </div>
+        )}
+        {/* gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-dark-900/70 via-dark-900/10 to-transparent pointer-events-none" />
+        {/* Category badge on image */}
+        <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-md backdrop-blur-sm ${categoryColors[post.category] || 'bg-dark-500/80 text-text-secondary'}`}>
           {post.category}
         </span>
-        <h3 className="font-serif font-bold text-text-primary mt-3 mb-2 group-hover:text-brand-blue transition-colors line-clamp-2">{post.title}</h3>
-        <p className="text-text-secondary text-xs leading-relaxed line-clamp-2 mb-3">{post.excerpt}</p>
-        <span className="text-brand-blue text-xs font-semibold flex items-center gap-1">Read More <ArrowRight size={11} /></span>
+      </div>
+
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="font-serif font-bold text-text-primary mb-2 group-hover:text-brand-blue transition-colors line-clamp-2 text-base leading-snug flex-1">
+          {post.title}
+        </h3>
+        <p className="text-text-secondary text-xs leading-relaxed line-clamp-2 mb-4">{post.excerpt}</p>
+        <span className="text-brand-blue text-xs font-semibold flex items-center gap-1.5 mt-auto">
+          Read More <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+        </span>
       </div>
     </Link>
   )
@@ -153,8 +171,12 @@ export default function HomePage() {
       />
 
       {/* Stats */}
-      <section className="bg-dark-800 border-y border-dark-700 py-14">
-        <div className="max-w-5xl mx-auto px-4">
+      <section className="relative bg-dark-800 border-y border-dark-700/60 py-16 overflow-hidden">
+        {/* subtle radial glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 80% 100% at 50% 50%, rgba(27,79,216,0.06) 0%, transparent 70%)'
+        }} />
+        <div className="relative max-w-5xl mx-auto px-4">
           <StatsCounter stats={stats} />
         </div>
       </section>
@@ -184,13 +206,18 @@ export default function HomePage() {
                 >
                   <Link
                     to={item.href}
-                    className="group block bg-dark-700 rounded-xl p-7 border border-dark-600 hover:border-brand-blue/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-blue/10 h-full"
+                    className="group relative block bg-dark-700 rounded-xl p-7 border border-dark-600 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-xl hover:shadow-brand-blue/10 h-full overflow-hidden shimmer-card"
                   >
-                    <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${item.color} mb-5`}>
+                    {/* Subtle corner glow on hover */}
+                    <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-brand-blue/0 group-hover:bg-brand-blue/6 blur-2xl transition-all duration-500 pointer-events-none" />
+
+                    <div className={`relative inline-flex p-3.5 rounded-xl bg-gradient-to-br ${item.color} mb-5 shadow-lg group-hover:shadow-brand-blue/30 transition-shadow duration-300`}>
                       <Icon size={22} className="text-white" />
                     </div>
-                    <h3 className="font-serif text-xl font-bold text-text-primary mb-3 group-hover:text-brand-blue transition-colors">{item.title}</h3>
+                    <h3 className="font-serif text-xl font-bold text-text-primary mb-3 group-hover:text-brand-blue transition-colors duration-200">{item.title}</h3>
                     <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
+
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue/0 group-hover:via-brand-blue/30 to-transparent transition-all duration-500" />
                   </Link>
                 </motion.div>
               )
@@ -200,7 +227,8 @@ export default function HomePage() {
       </section>
 
       {/* Featured Listings */}
-      <section className="py-20 px-4 bg-dark-800">
+      <section className="relative py-20 px-4 bg-dark-800">
+        <div className="absolute inset-x-0 top-0 h-px divider-gradient" />
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 gap-4">
             <div>
@@ -273,7 +301,7 @@ export default function HomePage() {
                 Doug Armantrout has been helping buyers and sellers throughout Cole Camp, Warsaw, Sedalia, and the greater West Central Missouri region achieve their real estate goals. His deep local knowledge and strategic approach consistently deliver exceptional results.
               </p>
               <div className="space-y-2 mb-7">
-                {['Licensed REALTOR® & MLS Member', 'Cole Camp Local Expert', 'Proven Negotiator', '12+ Years Experience'].map((cred) => (
+                {['Licensed REALTOR® & MLS Member', 'Cole Camp Local Expert', 'Proven Negotiator', '10+ Years Experience'].map((cred) => (
                   <div key={cred} className="flex items-center gap-3 text-text-secondary text-sm">
                     <CheckCircle size={15} className="text-brand-blue flex-shrink-0" />
                     {cred}
@@ -289,8 +317,11 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-4 bg-dark-800">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-4 bg-dark-800 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 70% 80% at 50% 60%, rgba(27,79,216,0.05) 0%, transparent 65%)'
+        }} />
+        <div className="relative max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-12">
             <SectionLabel text="Client Stories" className="justify-center mb-4" />
             <h2 className="font-serif text-3xl lg:text-4xl font-bold text-text-primary">What Clients Say</h2>
@@ -309,7 +340,8 @@ export default function HomePage() {
       />
 
       {/* Recent Blog Posts */}
-      <section className="py-20 px-4">
+      <section className="relative py-20 px-4">
+        <div className="absolute inset-x-0 top-0 h-px divider-gradient" />
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 gap-4">
             <div>
@@ -338,10 +370,16 @@ export default function HomePage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-14 px-4 bg-dark-800 border-t border-dark-700">
-        <div className="max-w-xl mx-auto text-center">
+      <section className="relative py-16 px-4 bg-dark-800 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px divider-gradient" />
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 60% 120% at 50% 0%, rgba(27,79,216,0.07) 0%, transparent 60%)'
+        }} />
+        <div className="relative max-w-xl mx-auto text-center">
           <AnimatedSection>
-            <Mail className="text-brand-blue mx-auto mb-4" size={32} />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-blue/10 border border-brand-blue/20 mb-5 mx-auto">
+              <Mail className="text-brand-blue" size={24} />
+            </div>
             <h3 className="font-serif text-2xl font-bold text-text-primary mb-2">Stay Ahead of the Market</h3>
             <p className="text-text-secondary text-sm mb-6">Get West Central Missouri market updates and new listing alerts delivered to your inbox.</p>
             {newsletterDone ? (

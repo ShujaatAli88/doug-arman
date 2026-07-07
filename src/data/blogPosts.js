@@ -8,6 +8,7 @@ export const blogPosts = [
     date: 'June 5, 2026',
     readTime: '5 min read',
     featured: true,
+    image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=900&q=80',
     content: `The real estate market in Cole Camp and the broader West Central Missouri region is showing remarkable resilience in Q2 2026. Inventory remains tight, with homes selling on average within 21 days of listing — a 15% improvement over the same period last year.
 
 Median home prices in Cole Camp have risen approximately 6.2% year-over-year, now sitting around $198,000. Warsaw continues to attract buyers seeking lake-adjacent properties, with lakefront homes seeing the strongest appreciation at 9.4%.
@@ -27,6 +28,7 @@ If you're thinking about making a move in 2026, let's talk. I can give you a pre
     date: 'May 22, 2026',
     readTime: '6 min read',
     featured: false,
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80',
     content: `Buying a home in West Central Missouri can be one of the best decisions you make. The region offers affordability, quality of life, and community that are hard to find elsewhere. But like any market, there are local nuances worth knowing before you dive in.
 
 1. **Understand the MLS coverage area.** The West Central Association of Realtors MLS covers a broad region including Cole Camp, Warsaw, Sedalia, Lincoln, and surrounding communities. A local REALTOR® with full MLS access ensures you see every available listing, including properties not always visible on national sites.
@@ -48,6 +50,7 @@ If you're thinking about making a move in 2026, let's talk. I can give you a pre
     date: 'May 10, 2026',
     readTime: '7 min read',
     featured: false,
+    image: 'https://images.unsplash.com/photo-1582063289852-62e3ba2747f8?auto=format&fit=crop&w=900&q=80',
     content: `The biggest mistake sellers make is overpricing. It sounds counterintuitive — shouldn't you start high and negotiate down? The data says no. Overpriced homes sit on the market longer, become "stale," and ultimately sell for less than properly priced homes.
 
 Here's the pricing methodology I use for every Cole Camp listing:
@@ -73,6 +76,7 @@ Pricing is part data science, part local knowledge. Call me for a free, no-oblig
     date: 'April 28, 2026',
     readTime: '4 min read',
     featured: false,
+    image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=80',
     content: `Warsaw, Missouri is one of the most underrated real estate markets in the state. Situated along the Truman Reservoir and close to the Lake of the Ozarks, Warsaw offers a quality of life that larger cities simply can't match — at a fraction of the price.
 
 Right now, there are several excellent homes available under $300,000 in the Warsaw area. Here's what the market looks like:
@@ -96,6 +100,7 @@ Contact me at (660) 851-1818 or douga.homes@gmail.com to start your Warsaw home 
     date: 'April 15, 2026',
     readTime: '10 min read',
     featured: false,
+    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80',
     content: `Buying your first home is exciting, overwhelming, and one of the most important financial decisions you'll make. This guide is designed specifically for first-time buyers in West Central Missouri, where the market has its own unique characteristics.
 
 **Step 1: Assess your finances.** Before anything else, understand what you can afford. A good rule of thumb is that your monthly housing costs (mortgage, taxes, insurance) shouldn't exceed 28% of your gross monthly income.
@@ -123,6 +128,7 @@ Questions? Call me anytime at (660) 851-1818.`,
     date: 'March 30, 2026',
     readTime: '5 min read',
     featured: false,
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80',
     content: `Cole Camp, Missouri sits quietly in the heart of West Central Missouri, largely unknown to the outside world. And for the people who live here, that's perfectly fine. But for homebuyers seeking an alternative to crowded suburbs and sky-high prices, Cole Camp deserves a much closer look.
 
 **Affordability that actually makes sense.** In Cole Camp, you can buy a well-maintained 3-bedroom home for what it costs to rent a one-bedroom apartment in Kansas City. The value-per-dollar here is extraordinary.
@@ -146,6 +152,7 @@ I've been serving buyers and sellers in Cole Camp for years, and I never get tir
     date: 'March 15, 2026',
     readTime: '5 min read',
     featured: false,
+    image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=900&q=80',
     content: `If you're buying or selling a home in West Central Missouri, you'll frequently hear about the West Central Association of Realtors and its Multiple Listing Service (MLS). Understanding how this system works can make a real difference in your real estate experience.
 
 **What is an MLS?** A Multiple Listing Service is a database used by real estate professionals to share information about properties for sale. When your home is listed on the MLS, it's immediately visible to every agent in the system — dramatically expanding your marketing reach.

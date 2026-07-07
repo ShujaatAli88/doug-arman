@@ -70,7 +70,7 @@ export default function ListingsPage() {
       <HeroSection
         height="half"
         badge="West Central Association of Realtors MLS"
-        title={`<span class="text-white">Browse All </span><span class="text-[#1B4FD8]">Listings</span>`}
+        title={`<span class="text-white">Browse All </span><span class="text-[#19469D]">Listings</span>`}
         description="Explore available homes across Cole Camp, Warsaw, Sedalia, and West Central Missouri."
       />
 

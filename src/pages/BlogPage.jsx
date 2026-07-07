@@ -19,26 +19,39 @@ const PER_PAGE = 6
 
 function BlogCard({ post }) {
   return (
-    <Link to={`/blog/${post.slug}`} className="group block bg-dark-700 rounded-xl overflow-hidden border border-dark-600 hover:border-brand-blue/50 transition-all duration-300 hover:shadow-lg hover:shadow-brand-blue/10 h-full flex flex-col">
-      <div className="aspect-video bg-gradient-to-br from-dark-600 to-dark-500 relative flex-shrink-0">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-5xl opacity-15">📰</span>
-        </div>
+    <Link to={`/blog/${post.slug}`} className="group block bg-dark-700 rounded-xl overflow-hidden border border-dark-600 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-xl hover:shadow-brand-blue/10 h-full flex flex-col shimmer-card">
+      <div className="aspect-video bg-gradient-to-br from-dark-600 to-dark-500 relative flex-shrink-0 overflow-hidden">
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => { e.currentTarget.style.display = 'none' }}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-5xl opacity-15">📰</span>
+          </div>
+        )}
+        {/* Gradient overlay on image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent pointer-events-none" />
+        {/* Category badge on image */}
+        <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-md backdrop-blur-sm ${categoryColors[post.category] || 'bg-dark-500/80 text-text-secondary'}`}>
+          {post.category}
+        </span>
       </div>
       <div className="p-5 flex flex-col flex-1">
-        <div className="flex items-center gap-2 mb-3 flex-wrap">
-          <span className={`text-xs font-semibold px-2.5 py-1 rounded-md ${categoryColors[post.category] || 'bg-dark-500 text-text-secondary'}`}>
-            {post.category}
-          </span>
-          <span className="text-text-muted text-xs">{post.date}</span>
-          <span className="text-text-muted text-xs">· {post.readTime}</span>
+        <div className="flex items-center gap-2 mb-3 text-text-muted text-xs">
+          <span>{post.date}</span>
+          <span className="w-1 h-1 rounded-full bg-dark-400" />
+          <span>{post.readTime}</span>
         </div>
-        <h3 className="font-serif font-bold text-text-primary text-lg mb-2 group-hover:text-brand-blue transition-colors line-clamp-2 flex-1">
+        <h3 className="font-serif font-bold text-text-primary text-base mb-2 group-hover:text-brand-blue transition-colors duration-200 line-clamp-2 flex-1 leading-snug">
           {post.title}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed line-clamp-2 mb-4">{post.excerpt}</p>
         <span className="text-brand-blue text-sm font-semibold flex items-center gap-1.5 mt-auto">
-          Read More <ArrowRight size={13} />
+          Read More <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
         </span>
       </div>
     </Link>
@@ -57,7 +70,7 @@ export default function BlogPage() {
       <HeroSection
         height="half"
         badge="West Central Missouri Market Updates"
-        title={`<span class="text-white">Real Estate </span><span class="text-[#1B4FD8]">Insights</span>`}
+        title={`<span class="text-white">Real Estate </span><span class="text-[#19469D]">Insights</span>`}
         description="Market updates, buyer tips, seller guidance, and local news from West Central Missouri's trusted REALTOR®."
       />
 
@@ -68,10 +81,23 @@ export default function BlogPage() {
             <SectionLabel text="Featured Article" />
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <Link to={`/blog/${featuredPost.slug}`} className="group block bg-dark-700 rounded-2xl overflow-hidden border border-dark-600 hover:border-brand-blue/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand-blue/10">
+            <Link to={`/blog/${featuredPost.slug}`} className="group block bg-dark-700 rounded-2xl overflow-hidden border border-dark-600 hover:border-brand-blue/40 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-blue/12 shimmer-card">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="aspect-video lg:aspect-auto min-h-[240px] bg-gradient-to-br from-brand-blue to-brand-blue-deeper flex items-center justify-center">
-                  <span className="text-7xl opacity-20">📰</span>
+                <div className="aspect-video lg:aspect-auto min-h-[280px] bg-gradient-to-br from-brand-blue to-brand-blue-deeper relative overflow-hidden">
+                  {featuredPost.image ? (
+                    <img
+                      src={featuredPost.image}
+                      alt={featuredPost.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-7xl opacity-20">📰</span>
+                    </div>
+                  )}
+                  {/* Cinematic overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-dark-700/30 to-transparent lg:bg-gradient-to-l lg:from-dark-700/20 lg:to-transparent pointer-events-none" />
                 </div>
                 <div className="p-8 lg:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">

@@ -89,7 +89,7 @@ export default function BuyersPage() {
       <HeroSection
         height="half"
         badge="Buyer Resources"
-        title={`<span class="text-white">Your Complete </span><span class="text-[#1B4FD8]">Buyer's Guide</span>`}
+        title={`<span class="text-white">Your Complete </span><span class="text-[#19469D]">Buyer's Guide</span>`}
         description="Everything you need to know about buying a home in West Central Missouri — from pre-approval to closing day."
         primaryCTA={{ label: 'Start Your Search', href: '/listings' }}
         secondaryCTA={{ label: 'Talk to Doug', href: '/contact' }}
