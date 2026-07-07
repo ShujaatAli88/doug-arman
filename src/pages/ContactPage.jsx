@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { Phone, Mail, MapPin, Building, Facebook, Instagram, Linkedin, Youtube, CheckCircle, Loader, Clock, ArrowRight } from 'lucide-react'
+import { Phone, Mail, MapPin, Building, Facebook, Instagram, Youtube, CheckCircle, Loader, Clock, ArrowRight } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import SectionLabel from '../components/SectionLabel'
 import { agent } from '../data/agentData'
@@ -207,8 +207,13 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-center gap-3 mb-8">
-                  {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                    <a key={i} href="#" aria-label={`Social link ${i + 1}`}
+                  {[
+                    { Icon: Facebook,  href: agent.social.facebook,  label: 'Facebook' },
+                    { Icon: Instagram, href: agent.social.instagram, label: 'Instagram' },
+
+                    { Icon: Youtube,   href: agent.social.youtube,   label: 'YouTube' },
+                  ].map(({ Icon, href, label }) => (
+                    <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
                       className="p-2.5 bg-dark-700 hover:bg-brand-blue/20 border border-dark-600 hover:border-brand-blue rounded-lg text-text-muted hover:text-brand-blue transition-all">
                       <Icon size={16} />
                     </a>

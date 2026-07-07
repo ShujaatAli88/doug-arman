@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   X, Phone, Mail, MapPin,
-  Facebook, Instagram, Linkedin, Youtube,
+  Facebook, Instagram, Youtube,
   ArrowUpRight, ChevronRight,
   Home, Info, List, ShoppingBag, Tag, Calculator, BookOpen, MessageSquare,
 } from 'lucide-react'
@@ -23,7 +23,7 @@ const navItems = [
 const socials = [
   { Icon: Facebook,  href: agent.social.facebook,  label: 'Facebook' },
   { Icon: Instagram, href: agent.social.instagram, label: 'Instagram' },
-  { Icon: Linkedin,  href: agent.social.linkedin,  label: 'LinkedIn' },
+
   { Icon: Youtube,   href: agent.social.youtube,   label: 'YouTube' },
 ]
 
@@ -220,7 +220,7 @@ export default function MegaMenu({ open, onClose }) {
                 <p className="text-[9px] uppercase tracking-[0.2em] font-semibold text-white/20 mb-2.5">Follow Doug</p>
                 <div className="flex gap-2 mb-auto">
                   {socials.map(({ Icon, href, label }) => (
-                    <a key={label} href={href} aria-label={label}
+                    <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
                       className="w-8 h-8 rounded-lg border border-white/10 hover:border-brand-blue hover:bg-brand-blue flex items-center justify-center text-white/30 hover:text-white transition-all duration-200">
                       <Icon size={13} />
                     </a>
@@ -258,7 +258,7 @@ export default function MegaMenu({ open, onClose }) {
                 <div className="flex gap-1.5">
                   {[{ Icon: Facebook, href: agent.social.facebook, label: 'Facebook' },
                     { Icon: Instagram, href: agent.social.instagram, label: 'Instagram' }].map(({ Icon, href, label }) => (
-                    <a key={label} href={href} aria-label={label}
+                    <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
                       className="w-7 h-7 rounded-lg border border-white/10 hover:border-brand-blue hover:bg-brand-blue/20 flex items-center justify-center text-white/30 hover:text-white transition-all">
                       <Icon size={11} />
                     </a>

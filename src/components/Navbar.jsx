@@ -28,22 +28,20 @@ export default function Navbar() {
       <header
         className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-dark-900/98 backdrop-blur-xl border-b border-dark-700 shadow-xl shadow-black/40'
-            : 'bg-dark-900/75 backdrop-blur-xl border-b border-white/[0.06]'
+            ? 'bg-white border-b border-gray-200 shadow-lg shadow-black/8'
+            : 'bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-[72px]">
+          <div className="flex items-center justify-between h-[68px] lg:h-[76px]">
 
             {/* Logo */}
-            <Link to="/" className="flex flex-col leading-none group">
-              <span className="font-serif text-xl lg:text-2xl font-bold tracking-tight">
-                <span className="text-white group-hover:text-white/90 transition-colors">DOUG </span>
-                <span className="text-brand-blue group-hover:text-brand-blue-light transition-colors">ARMANTROUT</span>
-              </span>
-              <span className="text-[10px] text-white/35 uppercase tracking-[0.2em] mt-0.5">
-                REALTOR® · Cole Camp, MO
-              </span>
+            <Link to="/" className="flex items-center flex-shrink-0 group">
+              <img
+                src="/Doug-Updated-Logo.png"
+                alt="Doug Armantrout — REALTOR®"
+                className="h-[44px] lg:h-[52px] w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
+              />
             </Link>
 
             {/* Desktop Nav */}
@@ -56,15 +54,15 @@ export default function Navbar() {
                     to={link.href}
                     className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 group ${
                       isActive
-                        ? 'text-brand-blue-light bg-brand-blue/10'
-                        : 'text-white/60 hover:text-white hover:bg-white/[0.05]'
+                        ? 'text-brand-blue bg-brand-blue/8'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
                     {link.label}
                     {isActive && (
                       <span
                         className="absolute bottom-0.5 left-3 right-3 h-px rounded-full"
-                        style={{ background: 'linear-gradient(to right, transparent, #4B73E8, transparent)' }}
+                        style={{ background: 'linear-gradient(to right, transparent, #19469D, transparent)' }}
                       />
                     )}
                   </Link>
@@ -76,7 +74,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <a
                 href="tel:6608511818"
-                className="hidden lg:flex items-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-brand-blue/30"
+                className="hidden lg:flex items-center gap-2 bg-brand-blue hover:bg-brand-blue-dark text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-brand-blue/25"
               >
                 <Phone size={13} />
                 (660) 851-1818
@@ -86,12 +84,12 @@ export default function Navbar() {
               <button
                 onClick={() => setMegaOpen(true)}
                 aria-label="Open menu"
-                className="w-10 h-10 rounded-lg border border-white/10 hover:border-brand-blue/50 bg-white/[0.04] hover:bg-brand-blue/10 flex items-center justify-center transition-all duration-200 group"
+                className="w-10 h-10 rounded-lg border border-gray-200 hover:border-brand-blue/40 bg-gray-50 hover:bg-brand-blue/5 flex items-center justify-center transition-all duration-200 group"
               >
                 <span className="flex flex-col gap-[5px] w-4">
-                  <span className="h-[1.5px] rounded-full bg-white/50 group-hover:bg-brand-blue transition-colors" />
-                  <span className="h-[1.5px] rounded-full bg-white/50 group-hover:bg-brand-blue transition-colors w-3/4" />
-                  <span className="h-[1.5px] rounded-full bg-white/50 group-hover:bg-brand-blue transition-colors" />
+                  <span className="h-[1.5px] rounded-full bg-gray-500 group-hover:bg-brand-blue transition-colors" />
+                  <span className="h-[1.5px] rounded-full bg-gray-500 group-hover:bg-brand-blue transition-colors w-3/4" />
+                  <span className="h-[1.5px] rounded-full bg-gray-500 group-hover:bg-brand-blue transition-colors" />
                 </span>
               </button>
 

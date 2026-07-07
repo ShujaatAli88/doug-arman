@@ -10,9 +10,8 @@ export const agent = {
   tagline: 'Your Home. My Mission.',
   serviceAreas: ['Cole Camp', 'Warsaw', 'Sedalia', 'Lincoln', 'Knob Noster', 'Leeton', 'Stover', 'Otterville'],
   social: {
-    facebook: '#',
-    instagram: '#',
-    linkedin: '#',
-    youtube: '#',
+    facebook: 'https://www.facebook.com/DougArmantroutRealtor/',
+    instagram: 'https://www.instagram.com/douga.homes/',
+youtube: 'https://www.youtube.com/channel/UClv_csmRVDoLvVSwY_KJ3HQ',
   },
 }
