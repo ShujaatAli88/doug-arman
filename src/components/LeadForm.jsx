@@ -2,15 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { CheckCircle, AlertCircle, Loader } from 'lucide-react'
 
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
-
-function toFormData(obj) {
-  const fd = new FormData()
-  Object.entries(obj).forEach(([k, v]) => {
-    if (v !== undefined && v !== null && v !== '') fd.append(k, String(v))
-  })
-  return fd
-}
+const API_URL = '/api/contact'
 
 export default function LeadForm({ formType = 'general', title, subtitle }) {
   const [submitted, setSubmitted] = useState(false)
@@ -23,9 +15,10 @@ export default function LeadForm({ formType = 'general', title, subtitle }) {
     setLoading(true)
     setError(false)
     try {
-      const res = await fetch(FORMSUBMIT_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
-        body: toFormData({
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           ...data,
           _subject: `Lead Form (${formType}) — ${data.name}`,
           _captcha: 'false',
