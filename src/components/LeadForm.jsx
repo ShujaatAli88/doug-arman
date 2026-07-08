@@ -1,19 +1,42 @@
 import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { CheckCircle, Loader } from 'lucide-react'
+import { CheckCircle, AlertCircle, Loader } from 'lucide-react'
+
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
 
 export default function LeadForm({ formType = 'general', title, subtitle }) {
   const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading]   = useState(false)
+  const [error, setError]       = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const onSubmit = useCallback(async () => {
+  const onSubmit = useCallback(async (data) => {
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
-  }, [])
+    setError(false)
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _subject: `Lead Form (${formType}) — ${data.name}`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+      const json = await res.json()
+      if (json.success === 'true' || json.success === true) {
+        setSubmitted(true)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
+  }, [formType])
 
   if (submitted) {
     return (
@@ -79,6 +102,13 @@ export default function LeadForm({ formType = 'general', title, subtitle }) {
             className="w-full bg-dark-800 border border-dark-500 focus:border-brand-blue text-text-primary placeholder-text-muted text-sm rounded-lg px-4 py-2.5 outline-none transition-colors focus-ring resize-none"
           />
         </div>
+
+        {error && (
+          <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
+            <AlertCircle size={14} className="flex-shrink-0" />
+            Submission failed — please call <a href="tel:6608511818" className="underline ml-1">(660) 851-1818</a>
+          </div>
+        )}
 
         <button
           type="submit"

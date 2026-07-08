@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { CheckCircle, Loader, Phone, Mail, BarChart2, FileSearch, MessageCircle } from 'lucide-react'
+import { CheckCircle, AlertCircle, Loader, Phone, Mail, BarChart2, FileSearch, MessageCircle } from 'lucide-react'
+
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
 import HeroSection from '../components/HeroSection'
 import CTABanner from '../components/CTABanner'
 import AnimatedSection from '../components/AnimatedSection'
@@ -14,17 +16,38 @@ const howItWorks = [
 
 export default function ValuationPage() {
   const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading]   = useState(false)
+  const [error, setError]       = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: { state: 'MO' }
   })
 
-  const onSubmit = useCallback(async () => {
+  const onSubmit = useCallback(async (data) => {
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1500))
-    setLoading(false)
-    setSubmitted(true)
+    setError(false)
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _subject: `Home Valuation Request — ${data.address}, ${data.city} MO`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+      const json = await res.json()
+      if (json.success === 'true' || json.success === true) {
+        setSubmitted(true)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   return (
@@ -181,6 +204,13 @@ export default function ValuationPage() {
                           </div>
                         </div>
                       </div>
+
+                      {error && (
+                        <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
+                          <AlertCircle size={15} className="flex-shrink-0" />
+                          Something went wrong. Please call Doug at <a href="tel:6608511818" className="underline ml-1">(660) 851-1818</a>.
+                        </div>
+                      )}
 
                       <button type="submit" disabled={loading}
                         className="w-full bg-brand-blue hover:bg-brand-blue-dark disabled:opacity-60 text-white font-semibold py-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 text-base focus-ring">

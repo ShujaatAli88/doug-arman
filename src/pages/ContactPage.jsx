@@ -1,20 +1,44 @@
 import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { Phone, Mail, MapPin, Building, Facebook, Instagram, Youtube, CheckCircle, Loader, Clock, ArrowRight } from 'lucide-react'
+import { Phone, Mail, MapPin, Building, Facebook, Instagram, Youtube, CheckCircle, AlertCircle, Loader, Clock, ArrowRight } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import SectionLabel from '../components/SectionLabel'
 import { agent } from '../data/agentData'
 
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
+
+/* ─── Contact Form ─── */
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading]   = useState(false)
+  const [error, setError]       = useState(false)
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const onSubmit = useCallback(async () => {
+  const onSubmit = useCallback(async (data) => {
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    setError(false)
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _subject: `New Contact from ${data.firstName} ${data.lastName}`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+      const json = await res.json()
+      if (json.success === 'true' || json.success === true) {
+        setSubmitted(true)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   if (submitted) {
@@ -90,6 +114,14 @@ function ContactForm() {
           </label>
         </div>
         {errors.consent && <p className="text-red-400 text-xs">Please accept to continue</p>}
+
+        {error && (
+          <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
+            <AlertCircle size={15} className="flex-shrink-0" />
+            Something went wrong. Please call Doug directly at <a href="tel:6608511818" className="underline ml-1">(660) 851-1818</a>.
+          </div>
+        )}
+
         <button type="submit" disabled={loading}
           className="w-full bg-brand-blue hover:bg-brand-blue-dark disabled:opacity-60 text-white font-semibold py-3.5 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 focus-ring">
           {loading ? <Loader size={16} className="animate-spin" /> : null}
@@ -100,16 +132,38 @@ function ContactForm() {
   )
 }
 
+/* ─── Consultation Form ─── */
 function ConsultationForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading]   = useState(false)
+  const [error, setError]       = useState(false)
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = useCallback(async () => {
+  const onSubmit = useCallback(async (data) => {
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1000))
-    setLoading(false)
-    setSubmitted(true)
+    setError(false)
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _subject: `Free Consultation Request from ${data.name}`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+      const json = await res.json()
+      if (json.success === 'true' || json.success === true) {
+        setSubmitted(true)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   if (submitted) {
@@ -162,7 +216,12 @@ function ConsultationForm() {
           ))}
         </div>
       </div>
-      <div className="flex items-end">
+      <div className="flex flex-col justify-end gap-2">
+        {error && (
+          <p className="text-red-400 text-xs flex items-center gap-1">
+            <AlertCircle size={12} /> Submission failed — please call (660) 851-1818
+          </p>
+        )}
         <button type="submit" disabled={loading}
           className="w-full bg-brand-blue hover:bg-brand-blue-dark disabled:opacity-60 text-white font-semibold py-2.5 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 focus-ring h-fit">
           {loading ? <Loader size={14} className="animate-spin" /> : <ArrowRight size={14} />}
@@ -210,7 +269,6 @@ export default function ContactPage() {
                   {[
                     { Icon: Facebook,  href: agent.social.facebook,  label: 'Facebook' },
                     { Icon: Instagram, href: agent.social.instagram, label: 'Instagram' },
-
                     { Icon: Youtube,   href: agent.social.youtube,   label: 'YouTube' },
                   ].map(({ Icon, href, label }) => (
                     <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
