@@ -2,7 +2,15 @@ import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { CheckCircle, AlertCircle, Loader, Phone, Mail, BarChart2, FileSearch, MessageCircle } from 'lucide-react'
 
-const API_URL = '/api/contact'
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
+
+function toFormData(obj) {
+  const fd = new FormData()
+  Object.entries(obj).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== '') fd.append(k, String(v))
+  })
+  return fd
+}
 import HeroSection from '../components/HeroSection'
 import CTABanner from '../components/CTABanner'
 import AnimatedSection from '../components/AnimatedSection'
@@ -27,18 +35,16 @@ export default function ValuationPage() {
     setLoading(true)
     setError(false)
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: toFormData({
           ...data,
           _subject: `Home Valuation Request — ${data.address}, ${data.city} MO`,
           _captcha: 'false',
           _template: 'table',
         }),
       })
-      const json = await res.json()
-      if (json.success === 'true' || json.success === true) {
+      if (res.ok) {
         setSubmitted(true)
       } else {
         setError(true)

@@ -5,7 +5,15 @@ import AnimatedSection from '../components/AnimatedSection'
 import SectionLabel from '../components/SectionLabel'
 import { agent } from '../data/agentData'
 
-const API_URL = '/api/contact'
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
+
+function toFormData(obj) {
+  const fd = new FormData()
+  Object.entries(obj).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== '') fd.append(k, String(v))
+  })
+  return fd
+}
 
 /* ─── Contact Form ─── */
 function ContactForm() {
@@ -18,18 +26,16 @@ function ContactForm() {
     setLoading(true)
     setError(false)
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: toFormData({
           ...data,
           _subject: `New Contact from ${data.firstName} ${data.lastName}`,
           _captcha: 'false',
           _template: 'table',
         }),
       })
-      const json = await res.json()
-      if (json.success === 'true' || json.success === true) {
+      if (res.ok) {
         setSubmitted(true)
       } else {
         setError(true)
@@ -143,18 +149,16 @@ function ConsultationForm() {
     setLoading(true)
     setError(false)
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: toFormData({
           ...data,
           _subject: `Free Consultation Request from ${data.name}`,
           _captcha: 'false',
           _template: 'table',
         }),
       })
-      const json = await res.json()
-      if (json.success === 'true' || json.success === true) {
+      if (res.ok) {
         setSubmitted(true)
       } else {
         setError(true)
