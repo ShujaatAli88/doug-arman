@@ -4,6 +4,14 @@ import { CheckCircle, AlertCircle, Loader } from 'lucide-react'
 
 const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
 
+function toFormData(obj) {
+  const fd = new FormData()
+  Object.entries(obj).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== '') fd.append(k, String(v))
+  })
+  return fd
+}
+
 export default function LeadForm({ formType = 'general', title, subtitle }) {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading]   = useState(false)
@@ -17,8 +25,7 @@ export default function LeadForm({ formType = 'general', title, subtitle }) {
     try {
       const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
+        body: toFormData({
           ...data,
           _subject: `Lead Form (${formType}) — ${data.name}`,
           _captcha: 'false',

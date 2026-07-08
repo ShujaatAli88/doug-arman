@@ -7,6 +7,14 @@ import { agent } from '../data/agentData'
 
 const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/douga.homes@gmail.com'
 
+function toFormData(obj) {
+  const fd = new FormData()
+  Object.entries(obj).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== '') fd.append(k, String(v))
+  })
+  return fd
+}
+
 /* ─── Contact Form ─── */
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -20,8 +28,7 @@ function ContactForm() {
     try {
       const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
+        body: toFormData({
           ...data,
           _subject: `New Contact from ${data.firstName} ${data.lastName}`,
           _captcha: 'false',
@@ -145,8 +152,7 @@ function ConsultationForm() {
     try {
       const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
+        body: toFormData({
           ...data,
           _subject: `Free Consultation Request from ${data.name}`,
           _captcha: 'false',
